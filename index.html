@@ -4,41 +4,90 @@
 <title>Sorry Somya</title>
 
 <style>
+
 body{
-background:#0f2027;
+background: linear-gradient(135deg,#1d2b64,#f8cdda);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:Arial;
 color:white;
 text-align:center;
-font-family:Arial;
-padding-top:120px;
+overflow:hidden;
 }
 
 h1{
-color:#ff4b6e;
 font-size:50px;
+margin-bottom:20px;
 }
 
-p{
-font-size:20px;
+#text{
+font-size:22px;
+max-width:600px;
 }
 
 .heart{
-font-size:40px;
+position:absolute;
+color:red;
+font-size:20px;
+animation: fall 6s linear infinite;
 }
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+opacity:1;
+}
+100%{
+transform:translateY(100vh);
+opacity:0;
+}
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Somya, I'm Sorry</h1>
+<h1>Somya, I'm Sorry ❤️</h1>
 
-<p>
-Hum tumko kabhi hurt karna chate the.<br><br>
-You meant a lot to me and I truly respect the time we spent together.<br><br>
-If I made mistakes, I sincerely apologize.<br><br>
-hum chate h tm humasa khush rho.
-</p>
+<p id="text"></p>
 
-<div class="heart">❤️</div>
+<script>
+
+let message = "hm tmko kbhi hurt ni krna chate the. You were very important to me. I truly respect the time we spent together. I'm really sorry Somya.";
+
+let i = 0;
+
+function typing(){
+if(i < message.length){
+document.getElementById("text").innerHTML += message.charAt(i);
+i++;
+setTimeout(typing,50);
+}
+}
+
+typing();
+
+function createHeart(){
+let heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random()*100 + "vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+}
+
+setInterval(createHeart,300);
+
+</script>
 
 </body>
 </html>
